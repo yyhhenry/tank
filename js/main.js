@@ -352,5 +352,6 @@ Page=function(){
 	}
 }
 window.onload=function(){
+	alert('红方WASD+G,绿方上下左右+小键盘0')
 	new Page().init(document.getElementById('page'));
 }
