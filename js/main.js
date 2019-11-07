@@ -265,10 +265,10 @@ Ground=function(){
 		ctx.stroke();
 		if(win=='none')redOne.move(rv,keys[65],keys[68],keys[87],keys[83]);
 		redOne.draw(rg);
-		if(keys[71])redOne.fire(addBullet);
+		if(keys[81])redOne.fire(addBullet);
 		if(win=='none')greenOne.move(rv,keys[37],keys[39],keys[38],keys[40]);
 		greenOne.draw(rg);
-		if(keys[96])greenOne.fire(addBullet);
+		if(keys[77])greenOne.fire(addBullet);
 		for(let i=0;i<bullets.length;i++){
 			if(win=='none'){
 				bullets[i].move(rv);
@@ -352,6 +352,6 @@ Page=function(){
 	}
 }
 window.onload=function(){
-	alert('红方WASD+G,绿方上下左右+小键盘0')
+	alert('红方WASD+Q,绿方上下左右+M');
 	new Page().init(document.getElementById('page'));
 }
