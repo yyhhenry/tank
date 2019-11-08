@@ -1,6 +1,6 @@
 window.onload=function(){
 	let canvas=document.getElementById('canvas');
-	let ws=new WebSocket("wss://ce020:5208");
+	let ws=new WebSocket("ws://ce020:5208");
 	ws.onopen=function(){}
 	ws.onmessage=function(data){
 		eval(JSON.parse(data.data));
