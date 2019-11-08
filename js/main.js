@@ -66,15 +66,29 @@ Tank=function(){
 		}else{
 			np={x:x,y:y};
 		}
+		if(Math.floor(x-0.25)<Math.floor(x)){
+			v.t|=rv({x:x,y:y-1}).l|rv({x:x-1,y:y}).t;
+			v.b|=rv({x:x,y:y+1}).l|rv({x:x-1,y:y}).b;
+		}else if(Math.floor(x+0.25)>Math.floor(x)){
+			v.t|=rv({x:x,y:y-1}).r|rv({x:x+1,y:y}).t;
+			v.b|=rv({x:x,y:y+1}).r|rv({x:x+1,y:y}).t;
+		}
+		if(Math.floor(y-0.25)<Math.floor(y)){
+			v.l|=rv({x:x-1,y:y}).t|rv({x:x,y:y-1}).l;
+			v.r|=rv({x:x+1,y:y}).t|rv({x:x,y:y-1}).r;
+		}else if(Math.floor(y+0.25)>Math.floor(y)){
+			v.l|=rv({x:x-1,y:y}).b|rv({x:x,y:y+1}).l;
+			v.r|=rv({x:x+1,y:y}).b|rv({x:x,y:y+1}).r;
+		}
 		if(v.l&&Math.floor(np.x-0.3)<Math.floor(x)){
-			np.x=Math.floor(x)+0.3;
+			np.x=x;
 		}else if(v.r&&Math.floor(np.x+0.3)>Math.floor(x)){
-			np.x=Math.floor(x)+0.7;
+			np.x=x;
 		}
 		if(v.t&&Math.floor(np.y-0.3)<Math.floor(y)){
-			np.y=Math.floor(y)+0.3;
+			np.y=y;
 		}else if(v.b&&Math.floor(np.y+0.3)>Math.floor(y)){
-			np.y=Math.floor(y)+0.7;
+			np.y=y;
 		}
 		x=np.x;
 		y=np.y;
@@ -112,7 +126,7 @@ Bullet=function(){
 		let v=rv({x:x,y:y});
 		let np={x:x+Math.cos(f)/20,y:y-Math.sin(f)/20};
 		dis-=1/20;
-		if(v==null||dis<0){
+		if(v.l==null||dis<0){
 			life=false;
 			cb();
 			return;
@@ -218,7 +232,7 @@ Ground=function(){
 		}
 		rv=function(vv){
 			let hv={x:Math.floor(vv.x),y:Math.floor(vv.y)};
-			if(hv.x<0||hv.y<0||hv.x>=wb||hv.y>=hb)return null;
+			if(hv.x<0||hv.y<0||hv.x>=wb||hv.y>=hb)return {};
 			return {
 				l:hv.x==0||v[hv.x-1][hv.y].r,
 				r:v[hv.x][hv.y].r,
@@ -345,13 +359,14 @@ Page=function(){
 		ctx.font='20px 黑体';
 		ctx.textAlign='center';
 		ctx.textBaseline='middle';
-		ctx.fillText('绿色'+greenCnt,150,500);
-		ctx.fillText('红色'+redCnt,550,500);
+		ctx.fillText('绿色 '+greenCnt,150,500);
+		ctx.fillText('红色 '+redCnt,550,500);
+		ctx.fillText('方向键+M',150,530);
+		ctx.fillText('WASD+Q',550,530);
 		ground.draw(keys);
 		setTimeout(thisPage.draw,20);
 	}
 }
 window.onload=function(){
-	alert('红方WASD+Q,绿方上下左右+M');
 	new Page().init(document.getElementById('page'));
 }
