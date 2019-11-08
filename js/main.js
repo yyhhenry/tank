@@ -80,14 +80,14 @@ Tank=function(){
 			v.l=v.l||rv({x:x-1,y:y}).b||rv({x:x,y:y+1}).l;
 			v.r=v.r||rv({x:x+1,y:y}).b||rv({x:x,y:y+1}).r;
 		}
-		if(v.l&&Math.floor(np.x-0.3)<Math.floor(x)){
+		if(v.l&&Math.floor(x-0.3)<Math.floor(x)){
 			np.x=x+1/30;
-		}else if(v.r&&Math.floor(np.x+0.3)>Math.floor(x)){
+		}else if(v.r&&Math.floor(x+0.3)>Math.floor(x)){
 			np.x=x-1/30;
 		}
-		if(v.t&&Math.floor(np.y-0.3)<Math.floor(y)){
+		if(v.t&&Math.floor(y-0.3)<Math.floor(y)){
 			np.y=y+1/30;
-		}else if(v.b&&Math.floor(np.y+0.3)>Math.floor(y)){
+		}else if(v.b&&Math.floor(y+0.3)>Math.floor(y)){
 			np.y=y-1/30;
 		}
 		x=np.x;
@@ -99,7 +99,7 @@ Tank=function(){
 		if(thisFireTime-lastFireTime>200&&bulletCount>0){
 			lastFireTime=thisFireTime;
 			bulletCount--;
-			callback(new Bullet().init(canvas,x+Math.cos(f)*0.4,y-Math.sin(f)*0.4,f,function(){bulletCount++;}));
+			callback(new Bullet().init(canvas,x+Math.cos(f)*0.27,y-Math.sin(f)*0.27,f,function(){bulletCount++;}));
 		}
 	}
 }
