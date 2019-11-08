@@ -67,28 +67,28 @@ Tank=function(){
 			np={x:x,y:y};
 		}
 		if(Math.floor(x-0.25)<Math.floor(x)){
-			v.t|=rv({x:x,y:y-1}).l|rv({x:x-1,y:y}).t;
-			v.b|=rv({x:x,y:y+1}).l|rv({x:x-1,y:y}).b;
+			v.t=v.t||rv({x:x,y:y-1}).l||rv({x:x-1,y:y}).t;
+			v.b=v.b||rv({x:x,y:y+1}).l||rv({x:x-1,y:y}).b;
 		}else if(Math.floor(x+0.25)>Math.floor(x)){
-			v.t|=rv({x:x,y:y-1}).r|rv({x:x+1,y:y}).t;
-			v.b|=rv({x:x,y:y+1}).r|rv({x:x+1,y:y}).t;
+			v.t=v.t||rv({x:x,y:y-1}).r||rv({x:x+1,y:y}).t;
+			v.b=v.b||rv({x:x,y:y+1}).r||rv({x:x+1,y:y}).t;
 		}
 		if(Math.floor(y-0.25)<Math.floor(y)){
-			v.l|=rv({x:x-1,y:y}).t|rv({x:x,y:y-1}).l;
-			v.r|=rv({x:x+1,y:y}).t|rv({x:x,y:y-1}).r;
+			v.l=v.l||rv({x:x-1,y:y}).t||rv({x:x,y:y-1}).l;
+			v.r=v.r||rv({x:x+1,y:y}).t||rv({x:x,y:y-1}).r;
 		}else if(Math.floor(y+0.25)>Math.floor(y)){
-			v.l|=rv({x:x-1,y:y}).b|rv({x:x,y:y+1}).l;
-			v.r|=rv({x:x+1,y:y}).b|rv({x:x,y:y+1}).r;
+			v.l=v.l||rv({x:x-1,y:y}).b||rv({x:x,y:y+1}).l;
+			v.r=v.r||rv({x:x+1,y:y}).b||rv({x:x,y:y+1}).r;
 		}
 		if(v.l&&Math.floor(np.x-0.3)<Math.floor(x)){
-			np.x=x;
+			np.x=x+1/30;
 		}else if(v.r&&Math.floor(np.x+0.3)>Math.floor(x)){
-			np.x=x;
+			np.x=x-1/30;
 		}
 		if(v.t&&Math.floor(np.y-0.3)<Math.floor(y)){
-			np.y=y;
+			np.y=y+1/30;
 		}else if(v.b&&Math.floor(np.y+0.3)>Math.floor(y)){
-			np.y=y;
+			np.y=y-1/30;
 		}
 		x=np.x;
 		y=np.y;
