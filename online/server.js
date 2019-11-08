@@ -408,8 +408,8 @@ Game=function(){
 		ctx.font='20px 黑体';
 		ctx.textAlign='center';
 		ctx.textBaseline='middle';
-		ctx.fillText('红色 '+${greenCnt},150,500);
-		ctx.fillText('绿色 '+${redCnt},550,500);
+		ctx.fillText('红色 '+${redCnt},150,500);
+		ctx.fillText('绿色 '+${greenCnt},550,500);
 		ctx.fillText('方向键+M',150,530);`);
 		wsb.addDraw(`
 		canvas.width=window.outerWidth;
@@ -421,8 +421,8 @@ Game=function(){
 		ctx.font='20px 黑体';
 		ctx.textAlign='center';
 		ctx.textBaseline='middle';
-		ctx.fillText('红色 '+${redCnt},150,500);
-		ctx.fillText('绿色 '+${greenCnt},550,500);
+		ctx.fillText('红色 '+${greenCnt},150,500);
+		ctx.fillText('绿色 '+${redCnt},550,500);
 		ctx.fillText('方向键+M',150,530);`);
 		ground.draw(keys);
 		wsa.sendAll();
