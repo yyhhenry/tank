@@ -143,6 +143,20 @@ Bullet=function(){
 			return;
 		}
 		const tp=0.07;
+		if(Math.floor(x-tp/2)<Math.floor(x)){
+			v.t=v.t||rv({x:x,y:y-1}).l||rv({x:x-1,y:y}).t;
+			v.b=v.b||rv({x:x,y:y+1}).l||rv({x:x-1,y:y}).b;
+		}else if(Math.floor(x+tp/2)>Math.floor(x)){
+			v.t=v.t||rv({x:x,y:y-1}).r||rv({x:x+1,y:y}).t;
+			v.b=v.b||rv({x:x,y:y+1}).r||rv({x:x+1,y:y}).b;
+		}
+		if(Math.floor(y-tp/2)<Math.floor(y)){
+			v.l=v.l||rv({x:x-1,y:y}).t||rv({x:x,y:y-1}).l;
+			v.r=v.r||rv({x:x+1,y:y}).t||rv({x:x,y:y-1}).r;
+		}else if(Math.floor(y+tp/2)>Math.floor(y)){
+			v.l=v.l||rv({x:x-1,y:y}).b||rv({x:x,y:y+1}).l;
+			v.r=v.r||rv({x:x+1,y:y}).b||rv({x:x,y:y+1}).r;
+		}
 		if(v.l&&Math.floor(np.x-tp)<Math.floor(x)){
 			np.x=Math.floor(x)+tp;
 			f=Math.PI-f;
