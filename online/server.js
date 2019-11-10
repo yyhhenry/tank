@@ -80,7 +80,7 @@ Tank=function(){
 			v.b=v.b||rv({x:x,y:y+1}).l||rv({x:x-1,y:y}).b;
 		}else if(Math.floor(x+0.25)>Math.floor(x)){
 			v.t=v.t||rv({x:x,y:y-1}).r||rv({x:x+1,y:y}).t;
-			v.b=v.b||rv({x:x,y:y+1}).r||rv({x:x+1,y:y}).t;
+			v.b=v.b||rv({x:x,y:y+1}).r||rv({x:x+1,y:y}).b;
 		}
 		if(Math.floor(y-0.25)<Math.floor(y)){
 			v.l=v.l||rv({x:x-1,y:y}).t||rv({x:x,y:y-1}).l;
@@ -108,7 +108,7 @@ Tank=function(){
 		if(thisFireTime-lastFireTime>200&&bulletCount>0){
 			lastFireTime=thisFireTime;
 			bulletCount--;
-			callback(new Bullet().init(canvas,x+Math.cos(f)*0.27,y-Math.sin(f)*0.27,f,function(){bulletCount++;}));
+			callback(new Bullet().init(wsa,wsb,x+Math.cos(f)*0.27,y-Math.sin(f)*0.27,f,function(){bulletCount++;}));
 		}
 	}
 }
