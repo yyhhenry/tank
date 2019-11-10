@@ -69,9 +69,9 @@ Tank=function(){
 		}
 		let np;
 		if(tg&&!tb){
-			np={x:x+Math.cos(f)/30,y:y-Math.sin(f)/30};
+			np={x:x+Math.cos(f)/20,y:y-Math.sin(f)/20};
 		}else if(tb&&!tg){
-			np={x:x-Math.cos(f)/30,y:y+Math.sin(f)/30};
+			np={x:x-Math.cos(f)/20,y:y+Math.sin(f)/20};
 		}else{
 			np={x:x,y:y};
 		}
