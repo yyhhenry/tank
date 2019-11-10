@@ -135,14 +135,14 @@ Bullet=function(){
 	this.move=function(rv){
 		if(!life)return;
 		let v=rv({x:x,y:y});
-		let np={x:x+Math.cos(f)/20,y:y-Math.sin(f)/20};
-		dis-=1/20;
+		let np={x:x+Math.cos(f)/15,y:y-Math.sin(f)/15};
+		dis-=1/15;
 		if(v.l==null||dis<0){
 			life=false;
 			cb();
 			return;
 		}
-		const tp=0.07;
+		const tp=0.075;
 		if(Math.floor(x-tp/2)<Math.floor(x)){
 			v.t=v.t||rv({x:x,y:y-1}).l||rv({x:x-1,y:y}).t;
 			v.b=v.b||rv({x:x,y:y+1}).l||rv({x:x-1,y:y}).b;
