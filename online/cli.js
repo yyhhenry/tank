@@ -1,6 +1,9 @@
 window.onload=function(){
 	let canvas=document.getElementById('canvas');
-	let ws=new WebSocket("ws://localhost:5208");
+	const servers=['ws://yyhhenry.imwork.net:80','ws://localhost:5208'];
+	const usingServer=1;
+	let ws=new WebSocket(servers[usingServer]);
+	console.log(servers[usingServer]);
 	ws.onopen=function(){}
 	ws.onmessage=function(data){
 		eval(JSON.parse(data.data));

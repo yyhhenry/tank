@@ -446,7 +446,11 @@ Game=function(){
 }
 
 let lastWs=null;
+let cnt=0;
 wss.on('connection',function(ws){
+	cnt=cnt+1;
+	if(cnt%2==1)console.log('Round '+((cnt+1)/2)+' Waiting...');
+	else console.log('Round '+(cnt/2)+' Succeed...');
 	ws.drawCode='';
 	ws.addDraw=function(v){
 		ws.drawCode+=v;
