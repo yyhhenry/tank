@@ -1,12 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>tank - online</title>
+	</head>
+	<body>
+		<canvas id='canvas'></canvas>
+		<script>
 window.onload=function(){
 	let canvas=document.getElementById('canvas');
 	const servers=['ws://yyhhenry.imwork.net:80','ws://localhost:5208'];
 	const usingServer=1;
 	let ws=new WebSocket(servers[usingServer]);
 	console.log(servers[usingServer]);
-	ws.onopen=function(){}
+	ws.ref=function(){
+		setTimeout(function(){
+			ws.send(JSON.stringify({sta:'ref'}));
+		},0);
+	}
+	ws.onopen=function(){
+		ws.ref();
+	}
 	ws.onmessage=function(data){
 		eval(JSON.parse(data.data));
+		ws.ref();
 	}
 	window.onkeydown=function(event){
 		ws.send(JSON.stringify({key:event.keyCode,sta:true}));
@@ -15,3 +32,6 @@ window.onload=function(){
 		ws.send(JSON.stringify({key:event.keyCode,sta:false}));
 	}
 }
+		</script>
+	</body>
+</html>

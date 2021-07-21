@@ -360,7 +360,9 @@ Game=function(){
 		wsa.on('message',function(data){
 			if(!life)return;
 			data=JSON.parse(data);
-			if(data.key==37){
+			if(data.sta=='ref'){
+				wsa.ref();
+			}else if(data.key==37){
 				keys[65]=data.sta;
 			}else if(data.key==39){
 				keys[68]=data.sta;
@@ -375,7 +377,9 @@ Game=function(){
 		wsb.on('message',function(data){
 			if(!life)return;
 			data=JSON.parse(data);
-			if(data.key==37){
+			if(data.sta=='ref'){
+				wsb.ref();
+			}else if(data.key==37){
 				keys[37]=data.sta;
 			}else if(data.key==39){
 				keys[39]=data.sta;
@@ -451,13 +455,17 @@ wss.on('connection',function(ws){
 	cnt=cnt+1;
 	if(cnt%2==1)console.log('Round '+((cnt+1)/2)+' Waiting...');
 	else console.log('Round '+(cnt/2)+' Succeed...');
-	ws.drawCode='';
+	let drawCode='';
+	let lastMainCode='';
+	ws.ref=function(){
+		ws.send(JSON.stringify(lastMainCode));
+	}
 	ws.addDraw=function(v){
-		ws.drawCode+=v;
+		drawCode+=v;
 	}
 	ws.sendAll=function(){
-		ws.send(JSON.stringify(ws.drawCode));
-		ws.drawCode='';
+		lastMainCode=drawCode;
+		drawCode='';
 	}
 	if(lastWs!=null){
 		new Game().init(lastWs,ws);

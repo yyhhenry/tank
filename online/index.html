@@ -6,6 +6,32 @@
 	</head>
 	<body>
 		<canvas id='canvas'></canvas>
-		<script src='./cli.js'></script>
+		<script>
+window.onload=function(){
+	let canvas=document.getElementById('canvas');
+	const servers=['ws://yyhhenry.imwork.net:80','ws://localhost:5208'];
+	const usingServer=0;
+	let ws=new WebSocket(servers[usingServer]);
+	console.log(servers[usingServer]);
+	ws.ref=function(){
+		setTimeout(function(){
+			ws.send(JSON.stringify({sta:'ref'}));
+		},0);
+	}
+	ws.onopen=function(){
+		ws.ref();
+	}
+	ws.onmessage=function(data){
+		eval(JSON.parse(data.data));
+		ws.ref();
+	}
+	window.onkeydown=function(event){
+		ws.send(JSON.stringify({key:event.keyCode,sta:true}));
+	}
+	window.onkeyup=function(event){
+		ws.send(JSON.stringify({key:event.keyCode,sta:false}));
+	}
+}
+		</script>
 	</body>
 </html>
